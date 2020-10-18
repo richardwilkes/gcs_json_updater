@@ -380,9 +380,9 @@ public final class Bundler {
         args.add("--file");
         args.add(PKG.toAbsolutePath().toString());
         args.add("--primary-bundle-id");
-        args.add("com.trollworks.gcs_json_updater");
+        args.add("com.trollworks.gcsjsonupdater");
         args.add("--password");
-        args.add("@keychain:gcs_json_updater_app_pw");
+        args.add("@keychain:gcs_app_pw");
         List<String> lines     = runCmd(args);
         String       requestID = null;
         boolean      noErrors  = false;
@@ -410,7 +410,7 @@ public final class Bundler {
         args.add("--notarization-info");
         args.add(requestID);
         args.add("--password");
-        args.add("@keychain:gcs_json_updater_app_pw");
+        args.add("@keychain:gcs_app_pw");
         boolean success = false;
         while (!success) {
             try {
