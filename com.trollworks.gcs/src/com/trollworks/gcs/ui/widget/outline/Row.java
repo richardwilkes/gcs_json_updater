@@ -16,18 +16,11 @@ import java.util.Collections;
 import java.util.List;
 
 /** Represents a single row of data within an {@link OutlineModel}. */
-public abstract class Row {
+public class Row {
     private   OutlineModel   mOwner;
-    private   int            mHeight;
-    private   boolean        mOpen;
     private   Row            mParent;
-    /** The children of this row. */
     protected ArrayList<Row> mChildren;
-
-    /** Create a new outline row. */
-    public Row() {
-        mHeight = -1;
-    }
+    private   boolean        mOpen;
 
     @Override
     public final boolean equals(Object obj) {

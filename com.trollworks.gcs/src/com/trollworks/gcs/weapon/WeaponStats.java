@@ -304,7 +304,7 @@ public abstract class WeaponStats {
         if (df instanceof GURPSCharacter) {
             getSkillLevel((GURPSCharacter) df, toolTip);
         }
-        return toolTip.length() > 0 ? "Includes modifiers from" + toolTip : "No additional modifiers";
+        return toolTip.isEmpty() ? "No additional modifiers" : "Includes modifiers from" + toolTip;
     }
 
     /** @return The skill level. */

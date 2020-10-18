@@ -197,7 +197,7 @@ public class XMLReader implements AutoCloseable {
         }
         do {
             if (mType == XMLNodeType.TEXT) {
-                if (builder.length() > 0) {
+                if (!builder.isEmpty()) {
                     builder.append(' ');
                 }
                 builder.append(getText());

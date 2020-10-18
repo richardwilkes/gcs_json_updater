@@ -721,10 +721,7 @@ public class Equipment extends ListRow {
         if (getParent() instanceof Equipment) {
             ((Equipment) getParent()).updateContainingWeights(okToNotify);
         }
-        if (!saved.equals(mExtendedWeight) || !savedForSkills.equals(mExtendedWeightForSkills)) {
-            return true;
-        }
-        return false;
+        return !saved.equals(mExtendedWeight) || !savedForSkills.equals(mExtendedWeightForSkills);
     }
 
     private void updateContainingWeights(boolean okToNotify) {
@@ -750,10 +747,7 @@ public class Equipment extends ListRow {
         if (getParent() instanceof Equipment) {
             ((Equipment) getParent()).updateContainingValues(okToNotify);
         }
-        if (!mExtendedValue.equals(savedValue)) {
-            return true;
-        }
-        return false;
+        return !mExtendedValue.equals(savedValue);
     }
 
     private void updateContainingValues(boolean okToNotify) {

@@ -18,7 +18,6 @@ import com.trollworks.gcs.datafile.DataFile;
 import com.trollworks.gcs.datafile.LoadState;
 import com.trollworks.gcs.equipment.Equipment;
 import com.trollworks.gcs.equipment.EquipmentList;
-import com.trollworks.gcs.feature.AttributeBonusLimitation;
 import com.trollworks.gcs.feature.Bonus;
 import com.trollworks.gcs.feature.BonusAttributeType;
 import com.trollworks.gcs.feature.CostReduction;
@@ -65,47 +64,47 @@ import java.util.Set;
 
 /** A GURPS character. */
 public class GURPSCharacter extends DataFile {
-    private static final int                                 CURRENT_VERSION                      = 5;
+    private static final int                                 CURRENT_VERSION             = 5;
     /**
      * The version where equipment was separated out into different lists based on carried/not
      * carried status.
      */
-    public static final  int                                 SEPARATED_EQUIPMENT_VERSION          = 4;
+    public static final  int                                 SEPARATED_EQUIPMENT_VERSION = 4;
     /**
      * The version where HP and FP damage tracking was introduced, rather than a free-form text
      * field.
      */
-    public static final  int                                 HP_FP_DAMAGE_TRACKING                = 5;
-    private static final String                              TAG_ROOT                             = "character";
-    private static final String                              TAG_CREATED_DATE                     = "created_date";
-    private static final String                              TAG_MODIFIED_DATE                    = "modified_date";
-    private static final String                              TAG_HP_DAMAGE                        = "hp_damage";
-    private static final String                              TAG_FP_DAMAGE                        = "fp_damage";
-    private static final String                              TAG_UNSPENT_POINTS                   = "unspent_points";
-    private static final String                              TAG_TOTAL_POINTS                     = "total_points";
-    private static final String                              TAG_INCLUDE_PUNCH                    = "include_punch";
-    private static final String                              TAG_INCLUDE_KICK                     = "include_kick";
-    private static final String                              TAG_INCLUDE_BOOTS                    = "include_kick_with_boots";
-    private static final String                              KEY_HP_ADJ                           = "HP_adj";
-    private static final String                              KEY_FP_ADJ                           = "FP_adj";
-    private static final String                              KEY_ST                               = "ST";
-    private static final String                              KEY_DX                               = "DX";
-    private static final String                              KEY_IQ                               = "IQ";
-    private static final String                              KEY_HT                               = "HT";
-    private static final String                              KEY_WILL_ADJ                         = "will_adj";
-    private static final String                              KEY_PER_ADJ                          = "per_adj";
-    private static final String                              KEY_SPEED_ADJ                        = "speed_adj";
-    private static final String                              KEY_MOVE_ADJ                         = "move_adj";
-    public static final  String                              KEY_ADVANTAGES                       = "advantages";
-    public static final  String                              KEY_SKILLS                           = "skills";
-    public static final  String                              KEY_SPELLS                           = "spells";
-    public static final  String                              KEY_EQUIPMENT                        = "equipment";
-    public static final  String                              KEY_OTHER_EQUIPMENT                  = "other_equipment";
-    public static final  String                              KEY_NOTES                            = "notes";
+    public static final  int                                 HP_FP_DAMAGE_TRACKING       = 5;
+    private static final String                              TAG_ROOT                    = "character";
+    private static final String                              TAG_CREATED_DATE            = "created_date";
+    private static final String                              TAG_MODIFIED_DATE           = "modified_date";
+    private static final String                              TAG_HP_DAMAGE               = "hp_damage";
+    private static final String                              TAG_FP_DAMAGE               = "fp_damage";
+    private static final String                              TAG_UNSPENT_POINTS          = "unspent_points";
+    private static final String                              TAG_TOTAL_POINTS            = "total_points";
+    private static final String                              TAG_INCLUDE_PUNCH           = "include_punch";
+    private static final String                              TAG_INCLUDE_KICK            = "include_kick";
+    private static final String                              TAG_INCLUDE_BOOTS           = "include_kick_with_boots";
+    private static final String                              KEY_HP_ADJ                  = "HP_adj";
+    private static final String                              KEY_FP_ADJ                  = "FP_adj";
+    private static final String                              KEY_ST                      = "ST";
+    private static final String                              KEY_DX                      = "DX";
+    private static final String                              KEY_IQ                      = "IQ";
+    private static final String                              KEY_HT                      = "HT";
+    private static final String                              KEY_WILL_ADJ                = "will_adj";
+    private static final String                              KEY_PER_ADJ                 = "per_adj";
+    private static final String                              KEY_SPEED_ADJ               = "speed_adj";
+    private static final String                              KEY_MOVE_ADJ                = "move_adj";
+    public static final  String                              KEY_ADVANTAGES              = "advantages";
+    public static final  String                              KEY_SKILLS                  = "skills";
+    public static final  String                              KEY_SPELLS                  = "spells";
+    public static final  String                              KEY_EQUIPMENT               = "equipment";
+    public static final  String                              KEY_OTHER_EQUIPMENT         = "other_equipment";
+    public static final  String                              KEY_NOTES                   = "notes";
     /** The prefix for all character IDs. */
-    public static final  String                              CHARACTER_PREFIX                     = "gcs.";
+    public static final  String                              CHARACTER_PREFIX            = "gcs.";
     /** The prefix used in front of all IDs for basic attributes. */
-    public static final  String                              ATTRIBUTES_PREFIX                    = CHARACTER_PREFIX + "ba.";
+    public static final  String                              ATTRIBUTES_PREFIX           = CHARACTER_PREFIX + "ba.";
     private              long                                mModifiedOn;
     private              long                                mCreatedOn;
     private              HashMap<String, ArrayList<Feature>> mFeatureMap;
@@ -148,7 +147,6 @@ public class GURPSCharacter extends DataFile {
     private              int                                 mTotalPoints;
     private              Settings                            mSettings;
     private              Profile                             mProfile;
-    private              Armor                               mArmor;
     private              OutlineModel                        mAdvantages;
     private              OutlineModel                        mSkills;
     private              OutlineModel                        mSpells;
@@ -167,7 +165,6 @@ public class GURPSCharacter extends DataFile {
     private              int                                 mCachedSpellPoints;
     private              int                                 mCachedRacePoints;
     private              boolean                             mSkillsUpdated;
-    private              boolean                             mSpellsUpdated;
     private              boolean                             mDidModify;
     private              boolean                             mNeedAttributePointCalculation;
     private              boolean                             mNeedAdvantagesPointCalculation;
@@ -187,7 +184,7 @@ public class GURPSCharacter extends DataFile {
     }
 
     private void characterInitialize() {
-        mSettings = new Settings(this);
+        mSettings = new Settings();
         mFeatureMap = new HashMap<>();
         mAdvantages = new OutlineModel();
         mSkills = new OutlineModel();
@@ -203,7 +200,6 @@ public class GURPSCharacter extends DataFile {
         mHitPointsDamage = 0;
         mFatiguePointsDamage = 0;
         mProfile = new Profile(this);
-        mArmor = new Armor(this);
         mCachedWeightCarried = new WeightValue(Fixed6.ZERO, mSettings.defaultWeightUnits());
         mCachedWeightCarriedForSkills = new WeightValue(Fixed6.ZERO, mSettings.defaultWeightUnits());
         mModifiedOn = System.currentTimeMillis();
@@ -474,20 +470,6 @@ public class GURPSCharacter extends DataFile {
     /** @return The modified date. */
     public long getModifiedOn() {
         return mModifiedOn;
-    }
-
-    public void updateSkills() {
-        for (Skill skill : getSkillsIterator()) {
-            skill.updateLevel(true);
-        }
-        mSkillsUpdated = true;
-    }
-
-    private void updateSpells() {
-        for (Spell spell : getSpellsIterator()) {
-            spell.updateLevel(true);
-        }
-        mSpellsUpdated = true;
     }
 
     /** @return The strength (ST). */
@@ -1373,11 +1355,6 @@ public class GURPSCharacter extends DataFile {
 
     public Settings getSettings() {
         return mSettings;
-    }
-
-    /** @return The {@link Armor} stats. */
-    public Armor getArmor() {
-        return mArmor;
     }
 
     /** @return The outline model for the character's advantages. */

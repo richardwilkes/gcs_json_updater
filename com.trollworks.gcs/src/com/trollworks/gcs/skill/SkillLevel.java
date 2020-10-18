@@ -41,7 +41,7 @@ public class SkillLevel {
      */
     public SkillLevel(int level, int relativeLevel, StringBuilder toolTip) {
         this(level, relativeLevel);
-        if (toolTip != null && toolTip.length() > 0) {
+        if (toolTip != null && !toolTip.isEmpty()) {
             mToolTip = "Includes modifiers from" + toolTip;
         }
     }

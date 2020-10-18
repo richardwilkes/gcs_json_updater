@@ -354,7 +354,7 @@ public class WeaponDamage {
     public String getDamageToolTip() {
         StringBuilder toolTip = new StringBuilder();
         getResolvedDamage(toolTip);
-        return toolTip.length() > 0 ? "Includes modifiers from" + toolTip : "No additional modifiers";
+        return toolTip.isEmpty() ? "No additional modifiers" : "Includes modifiers from" + toolTip;
     }
 
     /** @return The damage, fully resolved for the user's sw or thr, if possible. */
@@ -523,7 +523,7 @@ public class WeaponDamage {
         if (mBase != null) {
             String base = mBase.toString(false);
             if (!"0".equals(base)) {
-                if (buffer.length() > 0) {
+                if (!buffer.isEmpty()) {
                     char ch = base.charAt(0);
                     if (ch != '+' && ch != '-') {
                         buffer.append("+");
@@ -538,7 +538,7 @@ public class WeaponDamage {
             buffer.append(")");
         }
         if (mModifierPerDie != 0) {
-            if (buffer.length() > 0) {
+            if (!buffer.isEmpty()) {
                 buffer.append(" ");
             }
             buffer.append("(");

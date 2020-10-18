@@ -423,7 +423,7 @@ public class Skill extends ListRow {
             String        name    = getName();
             character.getSkillPointComparedIntegerBonusFor(ID_POINTS + "*", name, getSpecialization(), getCategories(), tooltip);
             character.getIntegerBonusFor(ID_POINTS + "/" + name.toLowerCase(), tooltip);
-            if (tooltip.length() > 0) {
+            if (!tooltip.isEmpty()) {
                 return "Includes modifiers from" + tooltip;
             }
         }

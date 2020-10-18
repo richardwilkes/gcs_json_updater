@@ -81,32 +81,42 @@ public class GCSJsonUpdater {
                     if (dot != -1 && dot + 1 < filename.length()) {
                         ext = filename.substring(dot + 1);
                     }
-                    if (ext.equals("gcs")) {
+                    switch (ext) {
+                    case "gcs":
                         if (isXMLFile(path)) {
                             GURPSCharacter gcs = new GURPSCharacter(path);
                             gcs.save(path);
                             counter++;
                         }
-                    } else if (ext.equals("gct")) {
+                        break;
+                    case "gct":
                         if (isXMLFile(path)) {
                             Template tmpl = new Template(path);
                             tmpl.save(path);
                             counter++;
                         }
-                    } else if (ext.equals("adq")) {
+                        break;
+                    case "adq":
                         counter = loadSave(new AdvantageList(), path, counter);
-                    } else if (ext.equals("adm")) {
+                        break;
+                    case "adm":
                         counter = loadSave(new AdvantageModifierList(), path, counter);
-                    } else if (ext.equals("eqp")) {
+                        break;
+                    case "eqp":
                         counter = loadSave(new EquipmentList(), path, counter);
-                    } else if (ext.equals("eqm")) {
+                        break;
+                    case "eqm":
                         counter = loadSave(new EquipmentModifierList(), path, counter);
-                    } else if (ext.equals("skl")) {
+                        break;
+                    case "skl":
                         counter = loadSave(new SkillList(), path, counter);
-                    } else if (ext.equals("spl")) {
+                        break;
+                    case "spl":
                         counter = loadSave(new SpellList(), path, counter);
-                    } else if (ext.equals("not")) {
+                        break;
+                    case "not":
                         counter = loadSave(new NoteList(), path, counter);
+                        break;
                     }
                 }
             }

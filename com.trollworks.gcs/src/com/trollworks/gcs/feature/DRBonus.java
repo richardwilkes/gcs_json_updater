@@ -11,7 +11,7 @@
 
 package com.trollworks.gcs.feature;
 
-import com.trollworks.gcs.character.Armor;
+import com.trollworks.gcs.character.GURPSCharacter;
 import com.trollworks.gcs.utility.json.JsonWriter;
 import com.trollworks.gcs.utility.text.Enums;
 import com.trollworks.gcs.utility.xml.XMLReader;
@@ -74,7 +74,7 @@ public class DRBonus extends Bonus {
 
     @Override
     public String getKey() {
-        return Armor.DR_PREFIX + mLocation.name();
+        return GURPSCharacter.CHARACTER_PREFIX + "dr." + mLocation.name();
     }
 
     @Override

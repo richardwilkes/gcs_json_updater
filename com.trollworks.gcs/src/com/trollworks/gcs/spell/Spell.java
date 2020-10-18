@@ -644,7 +644,7 @@ public class Spell extends ListRow {
             getSpellPointBonusesFor(character, ID_POINTS_COLLEGE, getCollege(), categories, tooltip);
             getSpellPointBonusesFor(character, ID_POINTS_POWER_SOURCE, getPowerSource(), categories, tooltip);
             getSpellPointBonusesFor(character, ID_POINTS, getName(), categories, tooltip);
-            if (tooltip.length() > 0) {
+            if (!tooltip.isEmpty()) {
                 return "Includes modifiers from" + tooltip;
             }
         }

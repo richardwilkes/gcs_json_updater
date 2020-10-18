@@ -599,25 +599,25 @@ public class Advantage extends ListRow implements Switchable {
                 buffer.append(TYPE_MENTAL);
             }
             if ((type & TYPE_MASK_PHYSICAL) != 0) {
-                if (buffer.length() > 0) {
+                if (!buffer.isEmpty()) {
                     buffer.append("/");
                 }
                 buffer.append(TYPE_PHYSICAL);
             }
             if ((type & TYPE_MASK_SOCIAL) != 0) {
-                if (buffer.length() > 0) {
+                if (!buffer.isEmpty()) {
                     buffer.append(separator);
                 }
                 buffer.append(TYPE_SOCIAL);
             }
             if ((type & TYPE_MASK_EXOTIC) != 0) {
-                if (buffer.length() > 0) {
+                if (!buffer.isEmpty()) {
                     buffer.append(separator);
                 }
                 buffer.append(TYPE_EXOTIC);
             }
             if ((type & TYPE_MASK_SUPERNATURAL) != 0) {
-                if (buffer.length() > 0) {
+                if (!buffer.isEmpty()) {
                     buffer.append(separator);
                 }
                 buffer.append(TYPE_SUPERNATURAL);
