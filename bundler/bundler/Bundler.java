@@ -321,7 +321,7 @@ public final class Bundler {
             args.add("--mac-package-name");
             args.add("GCSJsonUpdater");
             args.add("--mac-package-identifier");
-            args.add("com.trollworks.gcs_json_updater");
+            args.add("com.trollworks.gcsjsonupdater");
             if (sign) {
                 args.add("--mac-sign");
                 args.add("--mac-signing-key-user-name");
