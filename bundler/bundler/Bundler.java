@@ -331,7 +331,7 @@ public final class Bundler {
         case LINUX -> {
             if (!noInstaller) {
                 args.add("--linux-package-name");
-                args.add("gcs_json_updagter");
+                args.add("gcs_json_updater");
                 args.add("--linux-deb-maintainer");
                 args.add("wilkes@me.com");
                 args.add("--linux-menu-group");
